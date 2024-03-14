@@ -9,7 +9,7 @@
             </div>
             <ul class="list-group list-group-flush">
               <li class="list-group-item"><%= plant.duration %></li>
-              <li class="list-group-item"><%= plant.date_planted %></li>
+              <li class="list-group-item"><%- new Date(plant.date_planted).toLocaleDateString() %></li>
             </ul>
             <div class="card-body">
               <a href="/plants/<%= plant._id%>/edit" class="card-link btn btn-info">Edit Plant</a>
