@@ -2,26 +2,26 @@
 <div class="row">
     <h1 class="text-center mb-3">New Plant</h1>
     <div class="col-6 offset-3">
-        <form action="/plants" method="POST">
+        <form action="/plants" method="POST" novalidate class="validated-form" >
             <div class="mb-3" >
                 <label class="form-label" for="common">Common Name</label>
-                <input class="form-control" type="text" id="common" name="plant[common_name]">
+                <input class="form-control" type="text" id="common" name="plant[common_name]" required>
             </div>
             <div class="mb-3">
                 <label class="form-label" for="scientific">Scientific Name</label>
-                <input class="form-control" type="text" id="scientific" name="plant[scientific_name]">
+                <input class="form-control" type="text" id="scientific" name="plant[scientific_name]" required>
             </div>
             <div class="mb-3">
                 <label class="form-label" for="duration">Duration</label>
-                <input class="form-control" type="text" id="duration" name="plant[duration]">
+                <input class="form-control" type="text" id="duration" name="plant[duration]" required>
             </div>
             <div class="mb-3">
                 <label class="form-label" for="date">Date Planted</label>
-                <input class="form-control" type="date" id="date" name="plant[date_planted]">
+                <input class="form-control" type="date" id="date" name="plant[date_planted]" required>
             </div>
             <div class="mb-3">
                 <label class="form-label" for="image">Add Image(URL)</label>
-                <input class="form-control" type="text" id="image" name="plant[image]">
+                <input class="form-control" type="text" id="image" name="plant[image]" required>
             </div>
             <div class="mb-3 text-center">
                 <button class="btn btn-success" >Add Plant</button>

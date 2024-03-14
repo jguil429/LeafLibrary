@@ -1,7 +1,7 @@
 <% layout('layouts/boilerplate')%>
 <div class="row">
     <div class="col-6 offset-3">
-        <div class="card" style="width: 18rem;">
+        <div class="card mb-3">
             <img src="<%= plant.image %>" class="card-img-top" alt="...">
             <div class="card-body">
               <h5 class="card-title"><%= plant.common_name %></h5>
@@ -12,7 +12,12 @@
               <li class="list-group-item"><%= plant.date_planted %></li>
             </ul>
             <div class="card-body">
-              <a href="/plants/<%= plant._id%>/edit"" class="card-link">Edit Plant</a>
+              <a href="/plants/<%= plant._id%>/edit" class="card-link btn btn-info">Edit Plant</a>
+              <form class="d-inline" action="/plants/<%= plant._id %>?_method=DELETE" method="POST">
+                <button class="btn btn-danger">Delete</button>
+              </form>
+            </div>
+            <div class="card-footer text-muted">
               <a href="/plants" class="card-link">All Plants</a>
             </div>
           </div>
