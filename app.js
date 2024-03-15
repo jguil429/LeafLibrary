@@ -3,6 +3,7 @@ const path = require('path');
 const mongoose = require('mongoose');
 const ejsMate = require('ejs-mate');
 const catchAsync = require('./utils/catchAsync');
+const ExpressError = require('./utils/ExpressError');
 const Plant = require('./models/plant');
 const methodOverride = require('method-override');
 
@@ -37,6 +38,7 @@ app.get('/plants/new', (req, res) => {
 });
 
 app.post('/plants', catchAsync(async (req, res) => {
+    if(!req.body.plant) throw new ExpressError("Missing Plant Data", 400);
     const plant = new Plant(req.body.plant);
     await plant.save();
     res.redirect(`/plants/${plant._id}`);
@@ -64,9 +66,14 @@ app.delete('/plants/:id', catchAsync(async (req, res) => {
     res.redirect('/plants');
 }));
 
+app.all('*', (req, res, next) => {
+    next(new ExpressError('Page Not Found', 404))
+});
+
 app.use((err, req, res, next) => {
-    console.log(err)
-    res.send("Problem Detected.")
+    const { statusCode = 500 } = err;
+        if(!err.message) err.message = "Problem Detected";
+    res.status(statusCode).render('error', {err});
 })
 
 app.listen(3000, () => {
