@@ -77,6 +77,11 @@ app.all('*', (req, res, next) => {
     next(new ExpressError('Page Not Found', 404))
 });
 
-app.listen(3000, () => {
-    console.log('Port 3000')
+//for Jordan's local
+app.listen(3030, () => {
+    console.log('Port 3030')
 });
+
+// app.listen(3030, () => {
+//     console.log('Port 3030')
+// });

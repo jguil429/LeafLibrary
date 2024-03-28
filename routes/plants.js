@@ -20,13 +20,13 @@ router.get('/', catchAsync(async(req, res) => {
     res.render('plants/library', {plants});
 }));
 
-router.get('/new', (req, res) => {
-    if(!req.isAuthenticated()) {
-        console.log(req, res);
+router.get('/new', (req, res, next) => {
+    if (req.isAuthenticated()) {
+        res.render('plants/new');
+    } else {
         req.flash('error', 'You must be logged in to add a plant.');
         res.redirect('/login');
     }
-    res.render('plants/new');
 });
 
 router.post('/', validatePlant, catchAsync(async (req, res) => {
