@@ -1,6 +1,7 @@
 const mongoose = require('mongoose');
 const {genus, species} = require('./seedhelpers');
 const Plant = require('../models/plant');
+const User = require('../models/user');
 
 mongoose.connect('mongodb://localhost:27017/plantlib');
 
@@ -14,9 +15,15 @@ const sample = array => array[Math.floor(Math.random() * array.length)];
 
 const seedDB = async() => {
     await Plant.deleteMany({});
-    for (let i = 0; i < 50; i++) {
+
+    const testUser = new User({
+        email: 'testuser@example.com'
+    });
+    await testUser.save();
+
+    for (let i = 0; i < 5; i++) {
         const p = new Plant({
-            author: '6605d8106fb583831deb90fc',
+            author: testUser,
             scientific_name: `${sample(genus)} ${sample(species)}`,
             common_name: 'plant',
             duration: 'perennial',

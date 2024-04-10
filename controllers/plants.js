@@ -29,12 +29,14 @@ module.exports.showPlant = async(req, res) => {
         path: 'updates',
         populate: {
             path: 'author'
-    }
- }).populate('author');
+        }
+     }).populate('author');
+
     if(!plant){
         req.flash('error', 'Plant not found.');
         return res.redirect('/plants');
     }
+
     res.render('plants/show', { plant });
 };
 
