@@ -17,6 +17,7 @@ const seedDB = async() => {
     await Plant.deleteMany({});
 
     const testUser = new User({
+        username: 'testuser',
         email: 'testuser@example.com'
     });
     await testUser.save();
