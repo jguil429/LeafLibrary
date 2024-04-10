@@ -15,12 +15,15 @@ const sample = array => array[Math.floor(Math.random() * array.length)];
 
 const seedDB = async() => {
     await Plant.deleteMany({});
+    await User.deleteMany({});
 
     const testUser = new User({
         username: 'testuser',
         email: 'testuser@example.com'
     });
     await testUser.save();
+
+    const resize = 'c_auto,g_auto,h_380,w_490'
 
     for (let i = 0; i < 5; i++) {
         const p = new Plant({
@@ -30,7 +33,7 @@ const seedDB = async() => {
             duration: 'perennial',
             images: [
               {
-                url: 'https://res.cloudinary.com/dpblveo9k/image/upload/v1712770816/LeafLibrary/dveiqux0gflqcvk8nphp.jpg',
+                url: `https://res.cloudinary.com/dpblveo9k/image/upload/${resize}/v1712770816/LeafLibrary/dveiqux0gflqcvk8nphp.jpg`,
                 filename: 'LeafLibrary/dveiqux0gflqcvk8nphp'
               }
               ]
