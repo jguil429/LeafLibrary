@@ -1,5 +1,6 @@
 (() => {
     'use strict'
+    
   
     const forms = document.querySelectorAll('.validated-form')
   

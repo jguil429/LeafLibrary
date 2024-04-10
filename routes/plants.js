@@ -1,67 +1,27 @@
 const express = require('express');
 const router = express.Router();
+const plants = require('../controllers/plants');
 const catchAsync = require('../utils/catchAsync');
-const {plantSchema} = require('../schemas.js');
-const ExpressError = require('../utils/ExpressError');
+const {isLoggedIn, isAuthor, validatePlant} = require('../middleware.js');
 const Plant = require('../models/plant');
-const {isLoggedIn} = require('../middleware.js');
+const multer = require('multer');
+const {storage} = require('../cloudinary');
+const upload = multer({storage});
 
-const validatePlant = (req, res, next) => {
-    const {error} = plantSchema.validate(req.body);
-    if (error) {
-        const msg = error.details.map(el => el.message).join(',')
-        throw new ExpressError(msg, 400)
-    } else {
-        next();
-    }
-}
+router.route('/')
+    .get(catchAsync(plants.library))
+    .post(isLoggedIn, upload.array('image'), validatePlant, catchAsync(plants.createPlant));
 
-router.get('/', catchAsync(async(req, res) => {
-    const plants = await Plant.find({});
-    res.render('plants/library', {plants});
-}));
+router.get('/new', isLoggedIn, plants.renderNewForm);
 
-router.get('/new', isLoggedIn, (req, res) => {
-   res.render('plants/new'); 
-});
+router.get('/myplants', isLoggedIn, catchAsync(plants.myPlants));
 
-router.post('/', isLoggedIn, validatePlant, catchAsync(async (req, res) => {
-    const plant = new Plant(req.body.plant);
-    await plant.save();
-    req.flash('success', 'Successfully added a new plant!');
-    res.redirect(`/plants/${plant._id}`);
-}));
+router.route('/:id')
+    .get(catchAsync(plants.showPlant))
+    .put(isLoggedIn, isAuthor, upload.array('image'), validatePlant, catchAsync(plants.updatePlant))
+    .delete(isLoggedIn, isAuthor, catchAsync(plants.deletePlant));
 
-router.get('/:id', catchAsync(async(req, res) => {
-    const plant = await Plant.findById(req.params.id).populate('updates');
-    if(!plant){
-        req.flash('error', 'Plant not found.');
-        return res.redirect('/plants');
-    }
-    res.render('plants/show', { plant });
-}));
 
-router.get('/:id/edit', isLoggedIn, catchAsync(async(req, res) => {
-    const plant = await Plant.findById(req.params.id);
-    if(!plant){
-        req.flash('error', 'Plant not found.');
-        return res.redirect('/plants');
-    }
-    res.render('plants/edit', { plant });
-}));
-
-router.put('/:id', isLoggedIn, validatePlant, catchAsync(async (req, res) => {
-    const { id } = req.params;
-    const plant = await Plant.findByIdAndUpdate(id, {...req.body.plant});
-    req.flash('success', `Successfully edited ${plant.common_name}.`)
-    res.redirect(`/plants/${plant._id}`);
-}));
-
-router.delete('/:id', isLoggedIn, catchAsync(async (req, res) => {
-    const { id } = req.params;
-    await Plant.findByIdAndDelete(id);
-    req.flash('success', 'Deleted a plant.');
-    res.redirect('/plants');
-}));
+router.get('/:id/edit', isLoggedIn, isAuthor, catchAsync(plants.renderEditForm));
 
 module.exports = router;

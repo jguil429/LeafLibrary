@@ -16,10 +16,16 @@ const seedDB = async() => {
     await Plant.deleteMany({});
     for (let i = 0; i < 50; i++) {
         const p = new Plant({
+            author: '6605d8106fb583831deb90fc',
             scientific_name: `${sample(genus)} ${sample(species)}`,
             common_name: 'plant',
-            image: 'https://images.unsplash.com/photo-1520302630591-fd1c66edc19d?w=1000&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxjb2xsZWN0aW9uLXBhZ2V8MTN8MjM5ODgxNXx8ZW58MHx8fHx8',
-            duration: 'perennial'
+            duration: 'perennial',
+            images: [
+              {
+                url: 'https://res.cloudinary.com/dpblveo9k/image/upload/v1712770816/LeafLibrary/dveiqux0gflqcvk8nphp.jpg',
+                filename: 'LeafLibrary/dveiqux0gflqcvk8nphp'
+              }
+              ]
         }) 
         await p.save();
     }

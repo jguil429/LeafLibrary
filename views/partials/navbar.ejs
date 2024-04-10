@@ -9,12 +9,15 @@
               <a class="nav-link" href="/">Home</a>
               <a class="nav-link" href="/plants">All Plants</a>
               <a class="nav-link" href="/plants/new">Add Plant</a>
-              <a class="nav-link" href="#">My Plants</a>
+              <a class="nav-link" href="/plants/myplants">My Plants</a>
             </div>
             <div class="navbar-nav">
+              <% if (!currentUser) { %>
               <a href="/login" class=" nav-link">Login</a>
               <a href="/register" class="nav-link">Register</a>
+              <% } else { %>
               <a href="/logout" class="nav-link">Logout</a>
+              <% } %>
             </div>
           </div>
         </div>
