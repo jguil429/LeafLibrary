@@ -1,21 +1,18 @@
 <% layout('layouts/boilerplate')%>
     <h1 class="text-center mb-5">Leaf Library</h1>
    
-        <% for (let plant of plants) {%>
-           <div class="card mb-3">
-                <div class="row">
-                    <div class="col-md-4">
-                        <img src="<%= plant.images[0].library_card %>" class="img-fluid" alt="">
-                    </div>
-                    <div class="col-md-8">
-                        <div class="card-body">
-                            <h5 class="card-title"><%= plant.scientific_name %></h5>
-                            <p class="card-text">
-                                <small class='text-muted'><%= plant.common_name %></small>
-                            </p>
-                            <a class="btn btn-success" href="/plants/<%= plant._id %>">View <%= plant.scientific_name %></a>
-                        </div>
+    <div class="container">
+    <% for (let plant of plants) { %>
+        <div class="row d-inline-flex align-items-center justify-content-evenly">
+            <div class="col-4">
+                <div class="card" style="width: 18rem;">
+                    <img src="<%= plant.images[0].url %>" class="card-img-top" alt="">
+                    <div class="card-body">
+                        <h5 class="card-title"><%= plant.scientific_name %></h5>
+                        <a class="btn btn-success" href="/plants/<%= plant._id %>">Plant Details</a>
                     </div>
                 </div>
             </div>
-        <%}%>
+        </div>
+    <% } %>
+</div>
