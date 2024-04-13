@@ -4,9 +4,9 @@
     <div class="container">
         <div class="row flex justify-content-center">
                 <% for (let plant of plants) { %>
-                    <div class="col-3 mb-4 text-center">
+                    <div class="col-lg-3 col-md-4 col-sm-6 mb-4 text-center">
                         <div class="card" style="width: 18rem;">
-                            <img src="<%= plant.images[0].url %>" class="card-img-top" alt="">
+                            <img src="<%= plant.images[0].library_card %>" class="card-img-top" alt="">
                             <div class="card-body">
                                 <h5 class="card-title"><%= plant.scientific_name %></h5>
                                 <a class="btn btn-success" href="/plants/<%= plant._id %>">Plant Details</a>
