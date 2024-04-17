@@ -17,11 +17,22 @@ const seedDB = async() => {
     await Plant.deleteMany({});
     await User.deleteMany({});
 
+    //create User "test" attached as author to the 5 seeded plants
     const testUser = new User({
-        username: 'testuser',
-        email: 'testuser@example.com'
+        username: 'test',
+        email: 'test@gmail.com',
     });
+    await testUser.setPassword('test@123');
     await testUser.save();
+
+    //create User "jupe" for testing plant additions
+    const jupeUser = new User({
+        username: 'jupe',
+        email: 'jupe@gmeow.com',
+    });
+    await jupeUser.setPassword('jupe@123');
+    await jupeUser.save();
+
 
     const seedImages = [
         "https://res.cloudinary.com/dpblveo9k/image/upload/v1712788124/LeafLibrary/btakq1nacknwalruc8qx.jpg",
