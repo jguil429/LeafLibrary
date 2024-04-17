@@ -10,19 +10,19 @@
     <link rel="stylesheet" href="/stylesheets/home.css">
 </head>
 
-<body class="d-flex text-center text-white bg-dark">
+<body class="d-flex text-center text-white bg-dark body-home">
     <div class="cover-container d-flex w-100 h-100 p-3 mx-auto flex-column">
         <header class="mb-auto">
             <div>
                 <h3 class="float-md-left mb-0">LeafLibrary</h3>
                 <nav class="nav nav-masthead justify-content-center float-md-right">
-                    <a class="nav-link active" aria-current="page" href="#">Home</a>
-                    <a class="nav-link" href="/plants">Plants</a>
+                    <a class="nav-link-home active" aria-current="page" href="#">Home</a>
+                    <a class="nav-link-home" href="/plants">Plants</a>
                     <% if(!currentUser) { %>
-                    <a class="nav-link" href="/login">Login</a>
-                    <a class="nav-link" href="/register">Register</a>
+                    <a class="nav-link-home" href="/login">Login</a>
+                    <a class="nav-link-home" href="/register">Register</a>
                     <% } else { %>
-                    <a class="nav-link" href="/logout">Logout</a>
+                    <a class="nav-link-home" href="/logout">Logout</a>
                     <% } %>
                 </nav>
             </div>

@@ -1,13 +1,18 @@
 <% if(success && success.length) { %>
-<div class="alert alert-success alert-dismissable fade show col-6 text-center" role="alert">
-    <%= success %>
-    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-</div>
+<!--<div class="alert alert-success alert-dismissable fade show col-6 text-center mx-auto mb-3" role="alert">-->
+<!--    <%= success %>-->
+<!--    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>-->
+<!--</div>-->
+
+    <div style="max-width:40vw;margin:auto" class="alert alert-success alert-dismissible fade show text-center mb-3" role="alert">
+        <%= success %>
+        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+    </div>
 <% } %>
 
 <% if(error && error.length) { %>
-    <div class="alert alert-danger alert-dismissable fade show col-6 text-center" role="alert">
-        <%= error %>
-        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-    </div>
+        <div style="max-width:40vw;margin:auto" class="alert alert-danger alert-dismissible fade show text-center" role="alert">
+            <%= error %>
+            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+        </div>
     <% } %>

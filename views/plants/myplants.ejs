@@ -1,17 +1,29 @@
 <% layout('layouts/boilerplate')%>
 <h1 class="text-center mb-5">My Plants</h1>
     <div class="container">
-        <div class="row flex justify-content-center">
-                <% for (let plant of plants) { %>
+        <div class="row flex">
+            <% for (let i = 0; i < 4; i++) { %>
+                <% if (plants[i]) { %>
                     <div class="col-3 mb-5 text-center">
                         <div class="card" style="width: 18rem;">
-                            <img src="<%= plant.images[0].library_card %>" class="card-img-top" alt="">
+                            <img src="<%= plants[i].images[0].library_card %>" class="card-img-top" alt="">
                             <div class="card-body">
-                                <h5 class="card-title"><%= plant.scientific_name %></h5>
-                                <a class="btn btn-success" href="/plants/<%= plant._id %>">Plant Details</a>
+                                <h5 class="card-title"><%= plants[i].scientific_name %></h5>
+                                <a class="btn btn-success" href="/plants/<%= plants[i]._id %>">Plant Details</a>
+                            </div>
+                        </div>
+                    </div>
+               <% } else { %>
+                    <div class="col-3 mb-5 text-center">
+                        <div class="card" style="width: 18rem;">
+                            <img src="/images/empty.jpg" class="card-img-top" alt="">
+                            <div class="card-body">
+                                <h5 class="card-title"> NOTHING!!! </h5>
+                                <a class="btn btn-success" href="#">Plant Details</a>
                             </div>
                         </div>
                     </div>
                 <% } %>
+            <% } %>
         </div>
     </div>
