@@ -51,9 +51,9 @@
     </div>
 
     <div class="col-6">
-        <div class="card mb-3">
-            <div class="card-body">
-                <% if(currentUser) { %>
+        <% if(currentUser) { %>
+            <div class="card mb-3">
+                <div class="card-body">
                     <h5 class="text-center card-title">Update Plant Care</h5>
 
                     <form action="/plants/<%= plant._id %>/updates" method="POST" class="mb-3 validated-form" novalidate>
@@ -79,9 +79,10 @@
 
                         <button class="btn btn-outline-success">Submit</button>
                     </form>
-                <% } %>
+                </div>
             </div>
-        </div>
+        <% } %>
+
 
         <% for(let update of plant.updates) { %>
             <div class="card mb-3">
