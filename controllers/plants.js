@@ -62,7 +62,7 @@ module.exports.updatePlant = async (req, res) => {
         }
        await plant.updateOne({$pull: {images: {filename: {$in: req.body.deleteImages}}}})
     };
-    req.flash('success', `Successfully edited ${plant.common_name}.`)
+    req.flash('success', `Successfully edited plant.`)
     res.redirect(`/plants/${plant._id}`);
 };
 

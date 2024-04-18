@@ -1,6 +1,5 @@
 <% layout('layouts/boilerplate')%>
 <link rel="stylesheet" href="/stylesheets/hearts.css">
-<div class="row">
     <div class="col-6">
       <div id="carouselExampleFade" class="carousel slide carousel-fade">
         <div class="carousel-inner">
@@ -22,32 +21,37 @@
         <% } %>
       </div>
         <div class="card mb-3">
-              <h5 class="card-title"><%= plant.common_name %></h5>
+          <div class="card-body">
+              <h5 class="card-title"><strong><%= plant.common_name %></strong></h5>
               <p class="card-text"><%= plant.scientific_name %></p>
             </div>
             <ul class="list-group list-group-flush">
-              <li class="list-group-item"><%= plant.duration %></li>
-              <li class="list-group-item"><%- new Date(plant.date_planted).toLocaleDateString() %></li>
+              <li class="list-group-item"> <strong>Duration:</strong> <%= plant.duration %></li>
+              <li class="list-group-item"><strong>Date Planted: </strong><%- new Date(plant.date_planted).toLocaleDateString() %></li>
             </ul>
             <% if(currentUser && plant.author.equals(currentUser._id)) {%>
             <div class="card-body">
-              <a href="/plants/<%= plant._id%>/edit" class="card-link btn btn-info">Edit Plant</a>
+              <a href="/plants/<%= plant._id%>/edit" class="card-link btn btn-outline-success">Edit Plant</a>
               <form class="d-inline" action="/plants/<%= plant._id %>?_method=DELETE" method="POST">
-                <button class="btn btn-danger">Delete</button>
+                <button class="btn btn-outline-danger">Delete</button>
               </form>
             </div>
             <% } %>
-            <div class="card-footer text-muted">
-              <p>Submitted by <%= plant.author.username %></p>
-            </div>
+            <ul class="list-group list-group-flush">
+              <li class="list-group-item text-muted">Submitted by <%= plant.author.username %></li>
+            </ul>
+            
+          </div>
           </div>
     </div>
     <div class="col-6 offset-6">
+      <div class="card mb-3">
+        <div class="card-body">
       <% if(currentUser) { %>
-      <h5 class="text-center">Update Plant Care</h5>
+      <h5 class="text-center card-title">Update Plant Care</h5>
           <form action="/plants/<%= plant._id %>/updates" method="POST" class="mb-3 validated-form" novalidate>
             <fieldset class="starability-heart">
-              <legend>Plant Health rating:</legend>
+              <h6 class="card-subtitle mb-2">Plant Health:</h6>
               <input type="radio" id="no-rate" class="input-no-rate" name="update[health]" value="1" checked aria-label="No rating." />
               <input type="radio" id="first-rate1" name="update[health]" value="1" />
               <label for="first-rate1" title="Terrible">1 star</label>
@@ -61,25 +65,27 @@
               <label for="first-rate5" title="Amazing">5 stars</label>
             </fieldset>
             <div class="mb-3">
-              <label class="form-label" for="body">Care Update</label>
+              <label class="form-label" for="body"></label>
               <textarea class="form-control" name="update[body]" id="body" cols="30" rows="3" required></textarea>
             </div>
-            <button class="btn btn-success">Submit</button>
+              <button class="btn btn-outline-success">Submit</button>     
           </form>
+          </div>
+          </div>
           <% } %>
           <% for(let update of plant.updates) { %>
           <div class="card mb-3">
             <div class="card-body">
               <p class="starability-result" data-rating="<%= update.health %>"></p>
-              <p class="card-text"><b>Update:</b> <%= update.body %></p>
-              <h8 class="card-subtitle mb-3 text-body-secondary">By: <%= update.author.username %> </h8>
+              <p class="card-text"><b><%= update.author.username %>:</b> <%= update.body %></p>
               <% if (currentUser && update.author.equals(currentUser._id)) { %> 
               <form action="/plants/<%= plant._id %>/updates/<%= update._id %>?_method=DELETE" method="POST">
-                <button class="btn btn-sm btn-danger mb-3">Delete</button>
+                <button class="btn btn-sm btn-outline-danger">Delete</button>
               </form>
               <% } %>
             </div>
           </div>
           <% } %>
+        </div>
     </div>
 </div>

@@ -1,5 +1,5 @@
 <% layout('layouts/boilerplate')%>
-<h1 class="text-center mb-5">My Plants</h1>
+<h1 class="text-center text-success mb-5">My Plants</h1>
     <div class="container">
         <div class="row flex">
             <% for (let i = 0; i < 4; i++) { %>
@@ -18,8 +18,8 @@
                         <div class="card" style="width: 18rem;">
                             <img src="/images/empty.jpg" class="card-img-top" alt="">
                             <div class="card-body">
-                                <h5 class="card-title"> NOTHING!!! </h5>
-                                <a class="btn btn-success" href="#">Plant Details</a>
+                                <h5 class="card-title"> Empty Pot </h5>
+                                <a class="btn btn-success" href="/plants/new">Add Plant</a>
                             </div>
                         </div>
                     </div>

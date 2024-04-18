@@ -19,7 +19,7 @@ const seedDB = async() => {
 
     //create User "test" attached as author to the 5 seeded plants
     const testUser = new User({
-        username: 'test',
+        username: 'testUser',
         email: 'test@gmail.com',
     });
     await testUser.setPassword('test@123');
