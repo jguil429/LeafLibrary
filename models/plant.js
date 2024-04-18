@@ -1,24 +1,17 @@
 const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
-const Update = require('./update')
-
-const ImageSchema = new Schema ({
-        url: String,
-        filename: String
-});
-
-ImageSchema.virtual('thumbnail').get(function() {
-    return this.url.replace('/upload', '/upload/c_auto,g_auto,h_380,w_490');
-});
-
-ImageSchema.virtual('library_card').get(function() {
-    return this.url.replace('/upload', '/upload/c_auto,g_auto,h_275,w_360');
-});
+const Update = require('./update');
+const Image = require('./image');
 
 const PlantSchema = new Schema({
     common_name: String,
     scientific_name: String,
-    images: [ImageSchema],
+    images: [
+        {
+            type: Schema.Types.ObjectId,
+            ref: 'Image',
+        },
+    ],
     duration: String,
     date_planted: String,
     author: {
@@ -28,7 +21,7 @@ const PlantSchema = new Schema({
     updates: [
         {
             type: Schema.Types.ObjectId,
-            ref :"Update"
+            ref : 'Update'
         }
     ]
     
