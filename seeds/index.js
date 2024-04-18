@@ -22,6 +22,9 @@ const seedImages = [
     "https://res.cloudinary.com/dpblveo9k/image/upload/v1712245923/LeafLibrary/wdgg5oe7bvo7yzqfabs7.jpg"
 ]
 
+const resize = 'upload/c_auto,g_auto,h_380,w_490/';
+const placeholderImageUrl = 'https://res.cloudinary.com/dpblveo9k/image/upload/v1713400105/0_wfzkvq.jpg';
+
 const seedDB = async() => {
     await Plant.deleteMany({});
     await User.deleteMany({});
@@ -43,33 +46,31 @@ const seedDB = async() => {
     await jupeUser.setPassword('jupe@123');
     await jupeUser.save();
 
-    // create and save the images
-    const plantImages = [];
-    // for (let i = 0; i < 5; i++) {
-    //     const resize = 'upload/c_auto,g_auto,h_380,w_490';
-    //     const image = new Image({
-    //         url: seedImages[i].replace('upload/', resize),
-    //         filename: `LeafLibrary_${i}`,
-    //     });
-    //     await image.save();
-    // }
+    //create Image instance for empty pot placeholder
+    const image = new Image({
+        url: placeholderImageUrl,
+        filename: `LeafLibrary_placeholder`,
+    });
+    await image.save();
 
-    // create and save the plants, associating the images
+    // loop through 5 seed instances
     for (let i = 0; i < 5; i++) {
-        const resize = 'upload/c_auto,g_auto,h_380,w_490';
+        //create 5 Image instances to associate with Plant instances
+        // const resize = 'upload/c_auto,g_auto,h_380,w_490/';
         const image = new Image({
             url: seedImages[i].replace('upload/', resize),
             filename: `LeafLibrary_${i}`,
         });
         await image.save();
 
+        //create 5 Plant instances
         const p = new Plant({
             author: testUser,
             scientific_name: `${sample(genus)} ${sample(species)}`,
             common_name: 'plant',
             duration: 'perennial',
-            images: image
-        });
+            images: [image._id],
+        })
         await p.save();
     }
 }

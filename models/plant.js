@@ -9,8 +9,8 @@ const PlantSchema = new Schema({
     images: [
         {
             type: Schema.Types.ObjectId,
-            ref: 'Image'
-        }
+            ref: 'Image',
+        },
     ],
     duration: String,
     date_planted: String,
