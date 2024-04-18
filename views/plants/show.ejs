@@ -1,91 +1,100 @@
 <% layout('layouts/boilerplate')%>
 <link rel="stylesheet" href="/stylesheets/hearts.css">
+
+<div class="row">
     <div class="col-6">
-      <div id="carouselExampleFade" class="carousel slide carousel-fade">
-        <div class="carousel-inner">
-          <% plant.images.forEach((img, i) => { %>
-          <div class="carousel-item <%= i === 0 ? 'active' : '' %>">
-            <img src="<%=img.library_card%>" class="d-block w-100 h-100 image-thumbnail" alt="">
-          </div>
-          <% }) %>
-        </div>
-        <% if(plant.images.length > 1) { %>
-        <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleFade" data-bs-slide="prev">
-          <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-          <span class="visually-hidden">Previous</span>
-        </button>
-        <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleFade" data-bs-slide="next">
-          <span class="carousel-control-next-icon" aria-hidden="true"></span>
-          <span class="visually-hidden">Next</span>
-        </button>
-        <% } %>
-      </div>
-        <div class="card mb-3">
-          <div class="card-body">
-              <h5 class="card-title"><strong><%= plant.common_name %></strong></h5>
-              <p class="card-text"><%= plant.scientific_name %></p>
+        <div id="carouselExampleFade" class="carousel slide carousel-fade">
+            <div class="carousel-inner">
+                <% plant.images.forEach((img, i) => { %>
+                    <div class="carousel-item <%= i === 0 ? 'active' : '' %>">
+                      <img src="<%=img.library_card%>" class="d-block w-100 h-100 image-thumbnail" alt="">
+                    </div>
+                <% }) %>
             </div>
-            <ul class="list-group list-group-flush">
-              <li class="list-group-item"> <strong>Duration:</strong> <%= plant.duration %></li>
-              <li class="list-group-item"><strong>Date Planted: </strong><%- new Date(plant.date_planted).toLocaleDateString() %></li>
-            </ul>
-            <% if(currentUser && plant.author.equals(currentUser._id)) {%>
-            <div class="card-body">
-              <a href="/plants/<%= plant._id%>/edit" class="card-link btn btn-outline-success">Edit Plant</a>
-              <form class="d-inline" action="/plants/<%= plant._id %>?_method=DELETE" method="POST">
-                <button class="btn btn-outline-danger">Delete</button>
-              </form>
-            </div>
+
+            <% if(plant.images.length > 1) { %>
+                <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleFade" data-bs-slide="prev">
+                    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                    <span class="visually-hidden">Previous</span>
+                </button>
+                <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleFade" data-bs-slide="next">
+                    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                    <span class="visually-hidden">Next</span>
+                </button>
             <% } %>
+        </div>
+
+        <div class="card mb-3">
+            <div class="card-body">
+                <h5 class="card-title"><strong><%= plant.common_name %></strong></h5>
+                <p class="card-text"><%= plant.scientific_name %></p>
+            </div>
+
+            <ul class="list-group list-group-flush">
+                <li class="list-group-item"> <strong>Duration:</strong> <%= plant.duration %></li>
+                <li class="list-group-item"><strong>Date Planted: </strong><%- new Date(plant.date_planted).toLocaleDateString() %></li>
+            </ul>
+
+            <% if(currentUser && plant.author.equals(currentUser._id)) {%>
+                <div class="card-body">
+                    <a href="/plants/<%= plant._id%>/edit" class="card-link btn btn-outline-success">Edit Plant</a>
+                    <form class="d-inline" action="/plants/<%= plant._id %>?_method=DELETE" method="POST">
+                      <button class="btn btn-outline-danger">Delete</button>
+                    </form>
+                </div>
+            <% } %>
+
             <ul class="list-group list-group-flush">
               <li class="list-group-item text-muted">Submitted by <%= plant.author.username %></li>
             </ul>
-            
-          </div>
-          </div>
-    </div>
-    <div class="col-6 offset-6">
-      <div class="card mb-3">
-        <div class="card-body">
-      <% if(currentUser) { %>
-      <h5 class="text-center card-title">Update Plant Care</h5>
-          <form action="/plants/<%= plant._id %>/updates" method="POST" class="mb-3 validated-form" novalidate>
-            <fieldset class="starability-heart">
-              <h6 class="card-subtitle mb-2">Plant Health:</h6>
-              <input type="radio" id="no-rate" class="input-no-rate" name="update[health]" value="1" checked aria-label="No rating." />
-              <input type="radio" id="first-rate1" name="update[health]" value="1" />
-              <label for="first-rate1" title="Terrible">1 star</label>
-              <input type="radio" id="first-rate2" name="update[health]" value="2" />
-              <label for="first-rate2" title="Not good">2 stars</label>
-              <input type="radio" id="first-rate3" name="update[health]" value="3" />
-              <label for="first-rate3" title="Average">3 stars</label>
-              <input type="radio" id="first-rate4" name="update[health]" value="4" />
-              <label for="first-rate4" title="Very good">4 stars</label>
-              <input type="radio" id="first-rate5" name="update[health]" value="5" />
-              <label for="first-rate5" title="Amazing">5 stars</label>
-            </fieldset>
-            <div class="mb-3">
-              <label class="form-label" for="body"></label>
-              <textarea class="form-control" name="update[body]" id="body" cols="30" rows="3" required></textarea>
-            </div>
-              <button class="btn btn-outline-success">Submit</button>     
-          </form>
-          </div>
-          </div>
-          <% } %>
-          <% for(let update of plant.updates) { %>
-          <div class="card mb-3">
-            <div class="card-body">
-              <p class="starability-result" data-rating="<%= update.health %>"></p>
-              <p class="card-text"><b><%= update.author.username %>:</b> <%= update.body %></p>
-              <% if (currentUser && update.author.equals(currentUser._id)) { %> 
-              <form action="/plants/<%= plant._id %>/updates/<%= update._id %>?_method=DELETE" method="POST">
-                <button class="btn btn-sm btn-outline-danger">Delete</button>
-              </form>
-              <% } %>
-            </div>
-          </div>
-          <% } %>
         </div>
+    </div>
+
+    <div class="col-6">
+        <div class="card mb-3">
+            <div class="card-body">
+                <% if(currentUser) { %>
+                    <h5 class="text-center card-title">Update Plant Care</h5>
+
+                    <form action="/plants/<%= plant._id %>/updates" method="POST" class="mb-3 validated-form" novalidate>
+                        <fieldset class="starability-heart">
+                            <h6 class="card-subtitle mb-2">Plant Health:</h6>
+                            <input type="radio" id="no-rate" class="input-no-rate" name="update[health]" value="1" checked aria-label="No rating." />
+                            <input type="radio" id="first-rate1" name="update[health]" value="1" />
+                            <label for="first-rate1" title="Terrible">1 star</label>
+                            <input type="radio" id="first-rate2" name="update[health]" value="2" />
+                            <label for="first-rate2" title="Not good">2 stars</label>
+                            <input type="radio" id="first-rate3" name="update[health]" value="3" />
+                            <label for="first-rate3" title="Average">3 stars</label>
+                            <input type="radio" id="first-rate4" name="update[health]" value="4" />
+                            <label for="first-rate4" title="Very good">4 stars</label>
+                            <input type="radio" id="first-rate5" name="update[health]" value="5" />
+                            <label for="first-rate5" title="Amazing">5 stars</label>
+                        </fieldset>
+
+                        <div class="mb-3">
+                             <label class="form-label" for="body"></label>
+                             <textarea class="form-control" name="update[body]" id="body" cols="30" rows="3" required></textarea>
+                        </div>
+
+                        <button class="btn btn-outline-success">Submit</button>
+                    </form>
+                <% } %>
+            </div>
+        </div>
+
+        <% for(let update of plant.updates) { %>
+            <div class="card mb-3">
+                <div class="card-body">
+                    <p class="starability-result" data-rating="<%= update.health %>"></p>
+                    <p class="card-text"><b><%= update.author.username %>:</b> <%= update.body %></p>
+                    <% if (currentUser && update.author.equals(currentUser._id)) { %>
+                        <form action="/plants/<%= plant._id %>/updates/<%= update._id %>?_method=DELETE" method="POST">
+                            <button class="btn btn-sm btn-outline-danger">Delete</button>
+                        </form>
+                    <% } %>
+                </div>
+            </div>
+        <% } %>
     </div>
 </div>
