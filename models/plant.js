@@ -6,7 +6,12 @@ const Image = require('./image');
 const PlantSchema = new Schema({
     common_name: String,
     scientific_name: String,
-    images: [ImageSchema],
+    images: [
+        {
+            type: Schema.Types.ObjectId,
+            ref: 'Image'
+        }
+    ],
     duration: String,
     date_planted: String,
     author: {
@@ -16,7 +21,7 @@ const PlantSchema = new Schema({
     updates: [
         {
             type: Schema.Types.ObjectId,
-            ref :"Update"
+            ref : 'Update'
         }
     ]
     
