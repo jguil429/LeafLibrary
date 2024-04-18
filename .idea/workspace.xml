@@ -5,7 +5,13 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="1347c9b7-5ef4-43e2-8911-ce4ee71d2fb0" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/views/plants/show.ejs" beforeDir="false" afterPath="$PROJECT_DIR$/views/plants/show.ejs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/views/partials/flash.ejs" beforeDir="false" afterPath="$PROJECT_DIR$/views/partials/flash.ejs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/views/partials/navbar.ejs" beforeDir="false" afterPath="$PROJECT_DIR$/views/partials/navbar.ejs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/views/plants/edit.ejs" beforeDir="false" afterPath="$PROJECT_DIR$/views/plants/edit.ejs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/views/plants/library.ejs" beforeDir="false" afterPath="$PROJECT_DIR$/views/plants/library.ejs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/views/plants/myplants.ejs" beforeDir="false" afterPath="$PROJECT_DIR$/views/plants/myplants.ejs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/views/plants/new.ejs" beforeDir="false" afterPath="$PROJECT_DIR$/views/plants/new.ejs" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
