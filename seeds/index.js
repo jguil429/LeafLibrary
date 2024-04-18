@@ -22,7 +22,6 @@ const seedImages = [
     "https://res.cloudinary.com/dpblveo9k/image/upload/v1712245923/LeafLibrary/wdgg5oe7bvo7yzqfabs7.jpg"
 ]
 
-const resize = 'upload/c_auto,g_auto,h_380,w_490/';
 const placeholderImageUrl = 'https://res.cloudinary.com/dpblveo9k/image/upload/v1713400105/0_wfzkvq.jpg';
 
 const seedDB = async() => {
@@ -56,9 +55,8 @@ const seedDB = async() => {
     // loop through 5 seed instances
     for (let i = 0; i < 5; i++) {
         //create 5 Image instances to associate with Plant instances
-        // const resize = 'upload/c_auto,g_auto,h_380,w_490/';
         const image = new Image({
-            url: seedImages[i].replace('upload/', resize),
+            url: seedImages[i],
             filename: `LeafLibrary_${i}`,
         });
         await image.save();

@@ -3,7 +3,6 @@ const Image = require('../models/image');
 const { cloudinary } = require('../cloudinary');
 
 module.exports.library = async(req, res) => {
-    // const plants = await Plant.find({});
     const plants = await Plant.find().populate('images');
     const placeholder = await Image.findOne({filename: 'LeafLibrary_placeholder'})
 
