@@ -83,11 +83,11 @@ app.all('*', (req, res, next) => {
 });
 
 //for Jordan's local
-// app.listen(3030, () => {
-//     console.log('Port 3030')
-// });
+app.listen(3030, () => {
+    console.log('Port 3030')
+});
 
 //for Jennie's local
-app.listen(3000, () => {
-    console.log('Port 3000')
-});
+// app.listen(3000, () => {
+//     console.log('Port 3000')
+// });

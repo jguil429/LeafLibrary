@@ -1,12 +1,12 @@
 <% layout('layouts/boilerplate')%>
 <h1 class="text-center mb-5">My Plants</h1>
     <div class="container">
-        <div class="row flex">
+        <div class="row d-flex">
             <% for (let i = 0; i < 4; i++) { %>
                 <% if (plants[i]) { %>
                     <div class="col-3 mb-5 text-center">
                         <div class="card" style="width: 18rem;">
-                            <img src="<%= plants[i].images[0].library_card %>" class="card-img-top" alt="">
+                            <img src="<%= plants[i].images[0] ? plants[i].images[0].library_card : "/images/empty.jpg" %>" class="card-img-top" alt="">
                             <div class="card-body">
                                 <h5 class="card-title"><%= plants[i].scientific_name %></h5>
                                 <a class="btn btn-success" href="/plants/<%= plants[i]._id %>">Plant Details</a>
@@ -16,7 +16,8 @@
                <% } else { %>
                     <div class="col-3 mb-5 text-center">
                         <div class="card" style="width: 18rem;">
-                            <img src="/images/empty.jpg" class="card-img-top" alt="">
+<!--                            <img src="/images/empty.jpg" class="card-img-top" alt="">-->
+                            <img src="/images/empty.jpg" class="card-img-top" alt="" style="height:275px;width:360px">
                             <div class="card-body">
                                 <h5 class="card-title"> NOTHING!!! </h5>
                                 <a class="btn btn-success" href="#">Plant Details</a>
