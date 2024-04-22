@@ -17,7 +17,7 @@ module.exports.myPlants = async(req, res) => {
 };
 
 module.exports.renderNewForm = (req, res) => {
-    res.render('plants/new'); 
+    res.render('plants/new');
  };
 
 //  module.exports.createPlant = async (req, res, next) => {
