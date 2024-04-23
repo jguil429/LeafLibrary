@@ -16,11 +16,11 @@
                         <input class="form-control" type="text" id="scientific" name="plant[scientific_name]" value="<%= plant.scientific_name %>" required>
                     </div>
                     <div class="mb-3">
-                        <label class="form-label" for="duration">Duration</label>
+                        <label class="form-label" for="duration">Plant Type</label>
                         <input class="form-control" type="text" id="duration" name="plant[duration]" value="<%= plant.duration %>" required>
                     </div>
                     <div class="mb-3">
-                        <label class="form-label" for="date">Date Repotted</label>
+                        <label class="form-label" for="date">Date Planted</label>
                         <input class="form-control" type="date" id="date" name="plant[date_planted]" value="<%= plant.date_planted %>" min="1900-01-01" max="<%= new Date().toISOString().split('T')[0] %>" required>
                     </div>
                     <div class="input-group">
@@ -42,8 +42,8 @@
                     </div>
 
                     <div class="mb-3 text-center">
-                        <button class="btn btn-success" >Update Plant</button>
-                        <a class="btn btn-info" href="/plants/<%= plant._id%>">Plant Details</a>
+                        <button class="btn btn-success">Update Plant</button>
+                        <a class="btn btn-outline-success" href="/plants/<%= plant._id%>">Plant Details</a>
                     </div>
                 </form>
             </div>
