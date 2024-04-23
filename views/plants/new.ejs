@@ -1,35 +1,38 @@
 <% layout('layouts/boilerplate')%>
+
 <div class="row">
     <div class="col-md-6 offset-md-3 mb-4">
         <div class="card shadow">
             <div class="card-body">
                 <h5 class="card-title text-center">New Plant</h5>
-        <form action="/plants" method="POST" novalidate class="validated-form" enctype="multipart/form-data">
-            <div class="mb-3" >
-                <label class="form-label" for="common">Common Name</label>
-                <input class="form-control" type="text" id="common" name="plant[common_name]" required>
+
+                <form action="/plants" method="POST" novalidate class="validated-form" enctype="multipart/form-data">
+                    <div class="mb-3" >
+                        <label class="form-label" for="common">Common Name</label>
+                        <input class="form-control" type="text" id="common" name="plant[common_name]" required>
+                    </div>
+                    <div class="mb-3">
+                        <label class="form-label" for="scientific">Scientific Name</label>
+                        <input class="form-control" type="text" id="scientific" name="plant[scientific_name]" required>
+                    </div>
+                    <div class="mb-3">
+                        <label class="form-label" for="duration">Plant Type</label>
+                        <input class="form-control" type="text" id="duration" name="plant[duration]" required>
+                    </div>
+                    <div class="mb-3">
+                        <label class="form-label" for="date">Date Planted</label>
+                        <input class="form-control" type="date" id="date" name="plant[date_planted]" required>
+                    </div>
+                    <div class="input-group mb-3">
+                        <input type="file" class="form-control" id="image" name="image" multiple>
+                        <label for="image"></label>
+                    </div>
+
+                    <div class="mb-3 text-center">
+                        <button class="btn btn-success" >Add Plant</button>
+                    </div>
+                </form>
             </div>
-            <div class="mb-3">
-                <label class="form-label" for="scientific">Scientific Name</label>
-                <input class="form-control" type="text" id="scientific" name="plant[scientific_name]" required>
-            </div>
-            <div class="mb-3">
-                <label class="form-label" for="duration">Plant Type</label>
-                <input class="form-control" type="text" id="duration" name="plant[duration]" required>
-            </div>
-            <div class="mb-3">
-                <label class="form-label" for="date">Date Planted</label>
-                <input class="form-control" type="date" id="date" name="plant[date_planted]" required>
-            </div>
-            <div class="input-group mb-3">
-                <input type="file" class="form-control" id="image" name="image" multiple>
-                <label for="image"></label>
-            </div>
-            <div class="mb-3 text-center">
-                <button class="btn btn-success" >Add Plant</button>
-            </div>
-        </form>
+        </div>
     </div>
-</div>
-</div>
 </div>

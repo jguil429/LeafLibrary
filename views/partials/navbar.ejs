@@ -1,24 +1,27 @@
 <nav class="navbar navbar-expand-lg navbar-dark bg-success sticky-top fw-semibold nav-underline">
-        <div class="container-fluid">
-          <a class="navbar-brand" href="#">Leaf Library</a>
-          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+    <div class="container-fluid">
+        <a class="navbar-brand" href="#">Leaf Library</a>
+
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
-          </button>
-          <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+        </button>
+
+        <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
             <div class="navbar-nav d-block">
-              <a class="nav-link-main" href="/">Home</a>
-              <a class="nav-link-main" href="/plants">All Plants</a>
-              <a class="nav-link-main" href="/plants/new">Add Plant</a>
-              <a class="nav-link-main" href="/plants/myplants">My Plants</a>
+                <a class="nav-link-main" href="/">Home</a>
+                <a class="nav-link-main" href="/plants">All Plants</a>
+                <a class="nav-link-main" href="/plants/new">Add Plant</a>
+                <a class="nav-link-main" href="/plants/myplants">My Plants</a>
             </div>
+
             <div class="navbar-nav ms-auto d-block">
-              <% if (!currentUser) { %>
-              <a href="/login" class="nav-link-main">Login</a>
-              <a href="/register" class="nav-link-main">Register</a>
-              <% } else { %>
-              <a href="/logout" class="nav-link-main">Logout</a>
-              <% } %>
+                <% if (!currentUser) { %>
+                    <a href="/login" class="nav-link-main">Login</a>
+                    <a href="/register" class="nav-link-main">Register</a>
+                <% } else { %>
+                    <a href="/logout" class="nav-link-main">Logout</a>
+                <% } %>
             </div>
-          </div>
         </div>
-      </nav>
+    </div>
+</nav>

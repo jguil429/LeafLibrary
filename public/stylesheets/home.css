@@ -37,7 +37,7 @@
     font-weight: 700;
     color: rgba(209, 231, 221, 0.5);
     margin-left: 1rem;
-    /*border-bottom: 0.25rem solid transparent;*/
+    border-bottom: 0.25rem solid transparent;
     text-decoration: none;
 }
 
@@ -45,7 +45,7 @@
     color: rgba(255,255,255);
     border-bottom-color:rgba(255,255,255);
     border-bottom-color:hotpink;
-    border-width: 0 0 2px 0;
+    border-width: 0 0 4px 0;
     border-color: white;
     border-style: solid;
     transform: scaleX(0);
@@ -69,7 +69,9 @@
 }
 
 .nav-link-main:hover::before,
-.nav-link-main:hover::after {
+.nav-link-main:hover::after,
+.nav-link-home:hover::before,
+.nav-link-home:hover::after{
     transform: scaleX(1);
 }
 

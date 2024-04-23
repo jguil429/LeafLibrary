@@ -14,4 +14,8 @@ ImageSchema.virtual('library_card').get(function() {
     return this.url.replace('/upload', '/upload/c_auto,g_auto,h_275,w_360');
 });
 
+ImageSchema.virtual('edit_card').get(function() {
+    return this.url.replace('/upload', '/upload/c_auto,g_auto,h_150,w_200');
+});
+
 module.exports = mongoose.model('Image', ImageSchema);

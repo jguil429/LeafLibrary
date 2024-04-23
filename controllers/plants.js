@@ -17,7 +17,7 @@ module.exports.myPlants = async(req, res) => {
 };
 
 module.exports.renderNewForm = (req, res) => {
-    res.render('plants/new'); 
+    res.render('plants/new');
  };
 
 //  module.exports.createPlant = async (req, res, next) => {
@@ -67,7 +67,7 @@ module.exports.showPlant = async(req, res) => {
 
 module.exports.renderEditForm = async(req, res) => {
     const { id } = req.params;
-    const plant = await Plant.findById(id);
+    const plant = await Plant.findById(id).populate('images');
     if(!plant) {
         req.flash('error', 'Plant not found.');
         return res.redirect('/plants');
@@ -78,8 +78,14 @@ module.exports.renderEditForm = async(req, res) => {
 module.exports.updatePlant = async (req, res) => {
     const { id } = req.params;
     const plant = await Plant.findByIdAndUpdate(id, {...req.body.plant});
-    const imgs = req.files.map(f => ({url: f.path, filename: f.filename}));
-    plant.images.push(...imgs);
+    const newImages = await Promise.all(
+        req.files.map(async (f) => {
+            const image = new Image({ url: f.path, filename: f.filename });
+            await image.save();
+            return image._id;
+        })
+    );
+    plant.images.push(...newImages);
     await plant.save();
     if (req.body.deleteImages) {
         for (let filename of req.body.deleteImages){
