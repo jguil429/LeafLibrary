@@ -37,7 +37,7 @@ module.exports.logout = (req, res, next) => {
             return next(err);
         }
     req.flash('success', 'Logged out!');
-    res.redirect('/plants');
+    res.redirect('/');
     });
 };
 
