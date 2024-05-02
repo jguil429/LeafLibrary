@@ -13,7 +13,7 @@ const PlantSchema = new Schema({
         },
     ],
     duration: String,
-    date_planted: String,
+    date_planted: Date,
     author: {
         type: Schema.Types.ObjectId,
         ref: 'User'

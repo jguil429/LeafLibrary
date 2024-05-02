@@ -32,7 +32,7 @@
 
             <ul class="list-group list-group-flush">
                 <li class="list-group-item"> <strong>Plant Type:</strong> <%= plant.duration %></li>
-                <li class="list-group-item"><strong>Date Planted: </strong><%- new Date(plant.date_planted).toLocaleDateString() %></li>
+                <li class="list-group-item"><strong>Date Planted: </strong><%- formattedDate %></li>
             </ul>
 
             <% if(currentUser && plant.author.equals(currentUser._id)) {%>

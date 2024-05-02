@@ -3,6 +3,7 @@ const {genus, species} = require('./seedhelpers');
 const Plant = require('../models/plant');
 const User = require('../models/user');
 const Image = require('../models/image');
+const { DateTime } = require("luxon");
 
 mongoose.connect('mongodb://localhost:27017/plantlib');
 
@@ -67,6 +68,7 @@ const seedDB = async() => {
             scientific_name: `${sample(genus)} ${sample(species)}`,
             common_name: 'plant',
             duration: 'perennial',
+            date_planted: new Date(DateTime.now()),
             images: [image._id],
         })
         await p.save();
