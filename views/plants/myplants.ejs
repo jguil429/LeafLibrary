@@ -4,28 +4,28 @@
 
 <div class="container">
     <div class="row d-flex">
-        <% for (let i = 0; i < 4; i++) { %>
-            <% if (plants[i]) { %>
-                <div class="col-3 mb-5 text-center">
-                    <div class="card" style="width: 18rem;">
-                        <img src="<%= plants[i].images[0].library_card ?? placeholder.library_card %>" class="card-img-top" alt="">
-                        <div class="card-body">
-                            <h5 class="card-title"><%= plants[i].common_name %></h5>
-                            <a class="btn btn-success" href="/plants/<%= plants[i]._id %>">Plant Details</a>
-                        </div>
+        <% for (let i = 0; i < plants.length; i++) { %>
+            <div class="col-3 mb-5 text-center">
+                <div class="card" style="width: 18rem;">
+                    <img src="<%= plants[i].images[0].library_card ?? placeholder.library_card %>" class="card-img-top" alt="">
+                    <div class="card-body">
+                        <h5 class="card-title"><%= plants[i].common_name %></h5>
+                        <a class="btn btn-success" href="/plants/<%= plants[i]._id %>">Plant Details</a>
                     </div>
                 </div>
-           <% } else { %>
-                <div class="col-3 mb-5 text-center">
-                    <div class="card" style="width: 18rem;">
-                        <img src="<%= placeholder.library_card %>" class="card-img-top" alt=""">
-                        <div class="card-body">
-                            <h5 class="card-title"> Empty Pot </h5>
-                            <a class="btn btn-success" href="/plants/new">Add Plant</a>
-                        </div>
+            </div>
+        <% } %>
+
+        <% for (let i = plants.length; i < 4; i++) { %>
+            <div class="col-3 mb-5 text-center">
+                <div class="card" style="width: 18rem;">
+                    <img src="<%= placeholder.library_card %>" class="card-img-top" alt=""/>
+                    <div class="card-body">
+                        <h5 class="card-title"> Empty Pot </h5>
+                        <a class="btn btn-success" href="/plants/new">Add Plant</a>
                     </div>
                 </div>
-           <% } %>
+            </div>
         <% } %>
     </div>
 </div>
