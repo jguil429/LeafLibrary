@@ -5,14 +5,9 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="1347c9b7-5ef4-43e2-8911-ce4ee71d2fb0" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/utils/dateHelper.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/controllers/plants.js" beforeDir="false" afterPath="$PROJECT_DIR$/controllers/plants.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/models/plant.js" beforeDir="false" afterPath="$PROJECT_DIR$/models/plant.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/package-lock.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/seeds/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/seeds/index.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/views/plants/show.ejs" beforeDir="false" afterPath="$PROJECT_DIR$/views/plants/show.ejs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/views/plants/library.ejs" beforeDir="false" afterPath="$PROJECT_DIR$/views/plants/library.ejs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/views/plants/myplants.ejs" beforeDir="false" afterPath="$PROJECT_DIR$/views/plants/myplants.ejs" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -45,7 +40,7 @@
     "RunOnceActivity.OpenProjectViewOnStart": "true",
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "RunOnceActivity.laravel-idea.search-composer-json": "true",
-    "git-widget-placeholder": "main",
+    "git-widget-placeholder": "cc20fb3c",
     "last_opened_file_path": "/Users/JordanSteel/Code/LeafLibrary",
     "node.js.detected.package.eslint": "true",
     "node.js.detected.package.tslint": "true",

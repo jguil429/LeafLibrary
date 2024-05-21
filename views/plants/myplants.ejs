@@ -5,7 +5,7 @@
 <div class="container">
     <div class="row d-flex">
         <% for (let i = 0; i < plants.length; i++) { %>
-            <div class="col-3 mb-5 text-center">
+            <div class="col-lg-3 col-md-4 col-sm-6 mb-5 text-center">
                 <div class="card" style="width: 18rem;">
                     <img src="<%= plants[i].images[0].library_card ?? placeholder.library_card %>" class="card-img-top" alt="">
                     <div class="card-body">
@@ -17,7 +17,7 @@
         <% } %>
 
         <% for (let i = plants.length; i < 4; i++) { %>
-            <div class="col-3 mb-5 text-center">
+            <div class="col-lg-3 col-md-4 col-sm-6 mb-5 text-center">
                 <div class="card" style="width: 18rem;">
                     <img src="<%= placeholder.library_card %>" class="card-img-top" alt=""/>
                     <div class="card-body">
