@@ -2,11 +2,11 @@
 
 <h1 class="text-center mb-5">All Plants</h1>
 
-<div class="container">
-    <div class="row flex">
+<div class="container-fluid">
+    <div class="row d-flex">
         <% for (let plant of plants) { %>
-            <div class="col-lg-3 col-md-4 col-sm-12 mb-4 text-center">
-                <div class="card" style="width: 18rem;">
+            <div class="col-lg-3 col-md-4 col-sm-6 mb-5 text-center">
+                <div class="card">
                     <img src="<%= plant.images ? plant.images[0].library_card : placeholder.library_card %>" class="card-img-top" alt="">
                     <div class="card-body">
                         <h5 class="card-title"><%= plant.common_name %></h5>
