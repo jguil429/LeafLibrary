@@ -33,5 +33,21 @@
             }
         });
     </script>
+    <script>
+        // Get all the radio buttons
+        const radioButtons = document.querySelectorAll('input[type="radio"]');
+
+        // Add an event listener to each radio button
+        radioButtons.forEach(radioButton => {
+            radioButton.addEventListener('change', () => {
+                // Remove the selected class from all radio buttons
+                radioButtons.forEach(rb => rb.classList.remove('selected'));
+
+                // Add the selected class to the checked radio button and all the previous ones
+                const selectedIndex = Array.from(radioButtons).indexOf(radioButton);
+                Array.from(radioButtons).slice(0, selectedIndex + 1).forEach(rb => rb.classList.add('selected'));
+            });
+        });
+    </script>
 </body>
 </html>

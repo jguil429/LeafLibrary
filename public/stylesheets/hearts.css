@@ -2,7 +2,7 @@
     position: relative;
     width: 150px;
     height: 26px;
-    background-image: url("../images/heartgray.png");
+    background-image: url("../images/heartgreen.png");
     font-size: 0.1em;
     color: transparent;
   }
@@ -37,12 +37,15 @@
   }
   
   @media screen and (-webkit-min-device-pixel-ratio: 2), screen and (min-resolution: 192dpi) {
+    /*unfilled hearts in result*/
     .starability-result {
-    background-image: url("../images/heartgray.png");
+      background-image: url("../images/heartgray.png");
       background-size: 30px auto;
     }
+
+    /*filled heart in result*/
     .starability-result:after {
-    background-image: url("../images/heartgreen.png");
+      background-image: url("../images/heartgreen.png");
       background-size: 30px auto;
     }
   }
@@ -141,19 +144,29 @@
   
   .starability-heart > input:not([disabled]):hover ~ label {
     background-position: 0 0;
+    opacity: 0.8;
+    background-image: url("../images/heartgray.png");
   }
   
   .starability-heart > input:not([disabled]):hover + label {
-    background-position: 0 -30px;
+    background-image: url("../images/heartgreen.png");
+  }
+
+  /*selects all elements before hovered element*/
+  .starability-heart > label:nth-last-of-type(n+2):nth-last-of-type(-n+5):has(~ input:hover) {
+    background-position: 0 0;
+    opacity: 0.8;
+    background-image: url("../images/heartgreen.png");
   }
   
   .starability-heart > input:not([disabled]):hover + label::before {
-    opacity: 1;
+    background-image: url("../images/heartgreen.png");
+    opacity: 0.8;
   }
   
-  .starability-heart > input:focus + label {
-    outline: 1px dotted #999;
-  }
+  /*.starability-heart > input:focus + label {*/
+  /*  outline: 1px dotted white;*/
+  /*}*/
   
   .starability-heart .starability-focus-ring {
     position: absolute;
@@ -178,7 +191,6 @@
     font-size: 0.1em;
     color: transparent;
     cursor: pointer;
-    background-image: url("../images/heartgreen.png");
     background-repeat: no-repeat;
     background-position: 0 -30px;
   }
@@ -188,7 +200,6 @@
     position: absolute;
     display: block;
     height: 30px;
-    background-image: url("../images/heartgray.png");
     background-position: 0 30px;
     pointer-events: none;
     opacity: 0;
@@ -220,8 +231,9 @@
   }
   
   @media screen and (-webkit-min-device-pixel-ratio: 2), screen and (min-resolution: 192dpi) {
+    /*hearts before input*/
     .starability-heart > label {
-    background-image: url("../images/heartgray.png");
+      background-image: url("../images/heartgray.png");
       background-size: 30px auto;
     }
   }
@@ -251,7 +263,8 @@
       display: none;
     }
   }
-  
+
+  /*input animation*/
   .starability-heart > label::after {
     content: ' ';
     position: absolute;
@@ -264,10 +277,11 @@
     left: 0;
     z-index: 2;
   }
-  
+
+  /*animated heart*/
   @media screen and (-webkit-min-device-pixel-ratio: 2), screen and (min-resolution: 192dpi) {
     .starability-heart > label::after {
-    background-image: url("../images/heartgreen.png");
+      background-image: url("../images/heartgreen.png");
       background-size: 30px auto;
     }
   }
@@ -281,3 +295,8 @@
     -webkit-animation-fill-mode: forwards;
             animation-fill-mode: forwards;
   }
+
+.starability-heart > input.selected + label {
+  background-image: url("../images/heartgreen.png");
+  background-position: 0 0;
+}
