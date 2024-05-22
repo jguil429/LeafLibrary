@@ -1,8 +1,8 @@
 .starability-result {
     position: relative;
     width: 150px;
-    height: 30px;
-    background-image: url("../images/heartoutline.png");
+    height: 26px;
+    background-image: url("../images/heartgray.png");
     font-size: 0.1em;
     color: transparent;
   }
@@ -11,9 +11,9 @@
     content: ' ';
     position: absolute;
     left: 0;
-    height: 30px;
-    background-image: url("../images/heartfull.png");
-    background-position: 0 -30px;
+    height: 26px;
+    background-image: url("../images/heartgreen.png");
+    background-position: 0 -26px;
   }
   
   .starability-result[data-rating="5"]::after {
@@ -38,11 +38,11 @@
   
   @media screen and (-webkit-min-device-pixel-ratio: 2), screen and (min-resolution: 192dpi) {
     .starability-result {
-    background-image: url("../images/heartoutline.png");
+    background-image: url("../images/heartgray.png");
       background-size: 30px auto;
     }
     .starability-result:after {
-    background-image: url("../images/heartfull.png");
+    background-image: url("../images/heartgreen.png");
       background-size: 30px auto;
     }
   }
@@ -178,7 +178,7 @@
     font-size: 0.1em;
     color: transparent;
     cursor: pointer;
-    background-image: url("../images/heartfull.png");
+    background-image: url("../images/heartgreen.png");
     background-repeat: no-repeat;
     background-position: 0 -30px;
   }
@@ -188,7 +188,7 @@
     position: absolute;
     display: block;
     height: 30px;
-    background-image: url("../images/heartoutline.png");
+    background-image: url("../images/heartgray.png");
     background-position: 0 30px;
     pointer-events: none;
     opacity: 0;
@@ -221,7 +221,7 @@
   
   @media screen and (-webkit-min-device-pixel-ratio: 2), screen and (min-resolution: 192dpi) {
     .starability-heart > label {
-    background-image: url("../images/heartoutline.png");
+    background-image: url("../images/heartgray.png");
       background-size: 30px auto;
     }
   }
@@ -258,7 +258,7 @@
     opacity: 0;
     width: 30px;
     height: 30px;
-    background-image: url("../images/heartfull.png");
+    background-image: url("../images/heartgreen.png");
     background-repeat: no-repeat;
     bottom: 30px;
     left: 0;
@@ -267,7 +267,7 @@
   
   @media screen and (-webkit-min-device-pixel-ratio: 2), screen and (min-resolution: 192dpi) {
     .starability-heart > label::after {
-    background-image: url("../images/heartfull.png");
+    background-image: url("../images/heartgreen.png");
       background-size: 30px auto;
     }
   }
