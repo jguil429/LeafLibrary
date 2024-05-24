@@ -1,21 +1,31 @@
 const {DateTime} = require("luxon");
 
+function normalizeDate(date) {
+    const [year, month, day] = date.split('-');
+    return new Date(year, month - 1, day);
+}
 function formatDate(date) {
-    const dateTime = DateTime.fromJSDate(new Date(date));
-    return dateTime.toFormat("MMMM d, yyyy");
+    const dateObject = new Date(date);
+    const month = (dateObject.getMonth() + 1).toString();
+    const day = dateObject.getDate().toString();
+    const year = dateObject.getFullYear();
+    return`${month}/${day}/${year}`;
+}
+
+function getHTMLDefaultDate(date) {
+    const dateObject = new Date(date);
+    return dateObject.toISOString().split('T')[0];
 }
 
 function setDefaultISOStringFields(date) {
     const providedDateString = `${DateTime.fromJSDate(date)}`.split('T')[0];
-    // console.log(`providedDateString: ${providedDateString}`)
     const currentTimeString = `${DateTime.now()}`.split('T')[1];
-    // console.log(`currentTimeString: ${currentTimeString}`)
-
-    console.log(`response from setDefault: ${providedDateString}T${currentTimeString}`);
     return `${providedDateString}T${currentTimeString}`;
 }
 
 module.exports = {
+    normalizeDate,
     formatDate,
+    getHTMLDefaultDate,
     setDefaultISOStringFields
 };
