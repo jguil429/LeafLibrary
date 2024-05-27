@@ -89,8 +89,10 @@
                 <div class="card-body">
                     <div class="d-flex justify-content-between align-items-center">
                         <p class="starability-result" data-rating="<%= update.health %>"></p>
-                        <% const timestamp = dateHelper.formatDate(update.timestamp); %>
-                        <p class="text-muted fw-lighter"><%= timestamp %></p>
+                        <% if (update.timestamp) { %>
+                            <% const timestamp = dateHelper.formatDate(update.timestamp); %>
+                            <p class="text-muted fw-lighter"><%= timestamp %></p>
+                        <% } %>
                     </div>
                     <p class="card-text"><b><%= update.author.username %>:</b> <%= update.body %></p>
                     <% if (currentUser && update.author.equals(currentUser._id)) { %>
