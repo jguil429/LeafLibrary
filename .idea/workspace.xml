@@ -6,10 +6,11 @@
   <component name="ChangeListManager">
     <list default="true" id="1347c9b7-5ef4-43e2-8911-ce4ee71d2fb0" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app.js" beforeDir="false" afterPath="$PROJECT_DIR$/app.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/controllers/plants.js" beforeDir="false" afterPath="$PROJECT_DIR$/controllers/plants.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/utils/dateHelper.js" beforeDir="false" afterPath="$PROJECT_DIR$/utils/dateHelper.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/views/plants/edit.ejs" beforeDir="false" afterPath="$PROJECT_DIR$/views/plants/edit.ejs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/views/plants/new.ejs" beforeDir="false" afterPath="$PROJECT_DIR$/views/plants/new.ejs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/controllers/updates.js" beforeDir="false" afterPath="$PROJECT_DIR$/controllers/updates.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/models/update.js" beforeDir="false" afterPath="$PROJECT_DIR$/models/update.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/views/plants/show.ejs" beforeDir="false" afterPath="$PROJECT_DIR$/views/plants/show.ejs" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -42,7 +43,7 @@
     "RunOnceActivity.OpenProjectViewOnStart": "true",
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "RunOnceActivity.laravel-idea.search-composer-json": "true",
-    "git-widget-placeholder": "date-debugging",
+    "git-widget-placeholder": "add-timestamp-to-updates",
     "last_opened_file_path": "/Users/JordanSteel/Code/LeafLibrary",
     "node.js.detected.package.eslint": "true",
     "node.js.detected.package.tslint": "true",

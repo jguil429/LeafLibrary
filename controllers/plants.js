@@ -62,6 +62,8 @@ module.exports.showPlant = async(req, res) => {
         }
      }).populate('author').populate('images');
 
+    // console.log(plant);
+
     const formattedDate = dateHelper.formatDate(plant.date_planted);
 
     if(!plant){

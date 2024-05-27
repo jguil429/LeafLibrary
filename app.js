@@ -28,6 +28,9 @@ db.once('open', () => {
 
 const app = express();
 
+const dateHelper = require('./utils/dateHelper');
+app.locals.dateHelper = dateHelper;
+
 app.engine('ejs', ejsMate);
 app.set('view engine', 'ejs');
 app.set('views', path.join(__dirname, 'views'));
