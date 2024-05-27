@@ -92,6 +92,8 @@
                         <p class="text-muted fw-lighter">update date</p>
                     </div>
                     <p class="card-text"><b><%= update.author.username %>:</b> <%= update.body %></p>
+                    <% const timestamp = dateHelper.formatDate(update.timestamp); %>
+                    <p><%= timestamp %></p>
                     <% if (currentUser && update.author.equals(currentUser._id)) { %>
                         <form action="/plants/<%= plant._id %>/updates/<%= update._id %>?_method=DELETE" method="POST">
                             <button class="btn btn-sm btn-outline-danger">Delete</button>

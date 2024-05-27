@@ -3,7 +3,8 @@ const Schema = mongoose.Schema;
 
 const updateSchema = new Schema ({
     body: String,
-    health: Number, 
+    health: Number,
+    timestamp: Date,
     author: {
         type: Schema.Types.ObjectId,
         ref: 'User'
