@@ -2,7 +2,7 @@
 <link rel="stylesheet" href="/stylesheets/hearts.css">
 
 <div class="row">
-    <div class="col-6">
+    <div class="col-12 col-md-6">
         <div class="card mb-3">
             <div id="carouselExampleFade" class="carousel slide carousel-fade">
                 <div class="carousel-inner rounded-top">
@@ -50,30 +50,31 @@
         </div>
     </div>
 
-    <div class="col-6 ">
+    <div class="col-12 col-md-6">
         <% if(currentUser) { %>
             <div class="card mb-3">
                 <div class="card-body">
                     <h5 class="text-center card-title">Update Plant Care</h5>
-
                     <form action="/plants/<%= plant._id %>/updates" method="POST" class="mb-3 validated-form" novalidate>
-                        <fieldset class="starability-heart">
-                            <h6 class="card-subtitle mb-2">Plant Health:</h6>
-                            <input type="radio" id="no-rate" class="input-no-rate" name="update[health]" value="1" checked aria-label="No rating." />
-                            <input type="radio" id="first-rate1" name="update[health]" value="1" />
-                            <label for="first-rate1" title="Terrible">1 star</label>
-                            <input type="radio" id="first-rate2" name="update[health]" value="2" />
-                            <label for="first-rate2" title="Not good">2 stars</label>
-                            <input type="radio" id="first-rate3" name="update[health]" value="3" />
-                            <label for="first-rate3" title="Average">3 stars</label>
-                            <input type="radio" id="first-rate4" name="update[health]" value="4" />
-                            <label for="first-rate4" title="Very good">4 stars</label>
-                            <input type="radio" id="first-rate5" name="update[health]" value="5" />
-                            <label for="first-rate5" title="Amazing">5 stars</label>
-                        </fieldset>
-
+                         <div class="d-flex align-items-center">
+                            <h6 class="card-subtitle me-2">Plant Health:</h6>
+                            <fieldset class="starability-heart mt-4">
+                                <input type="radio" id="no-rate" class="input-no-rate" name="update[health]" value="1" checked aria-label="No rating." />
+                                <input type="radio" id="first-rate1" name="update[health]" value="1" />
+                                <label for="first-rate1" title="Terrible">1 star</label>
+                                <input type="radio" id="first-rate2" name="update[health]" value="2" />
+                                <label for="first-rate2" title="Not good">2 stars</label>
+                                <input type="radio" id="first-rate3" name="update[health]" value="3" />
+                                <label for="first-rate3" title="Average">3 stars</label>
+                                <input type="radio" id="first-rate4" name="update[health]" value="4" />
+                                <label for="first-rate4" title="Very good">4 stars</label>
+                                <input type="radio" id="first-rate5" name="update[health]" value="5" />
+                                <label for="first-rate5" title="Amazing">5 stars</label>
+                            </fieldset>
+                        </div>
+                
                         <div class="mb-3">
-                             <label class="form-label" for="body"></label>
+                             <label class="form-label d-none" for="body"></label>
                              <textarea class="form-control" name="update[body]" id="body" cols="30" rows="3" required></textarea>
                         </div>
 
