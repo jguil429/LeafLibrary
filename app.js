@@ -69,7 +69,8 @@ app.use('/plants', plantRoutes);
 app.use('/plants/:id/updates', updateRoutes);
 
 app.get('/', (req, res) => {
-    res.render('home')
+    const currentYear = new Date().getFullYear();
+    res.render('home', { currentYear });
 });
 
 app.use((err, req, res, next) => {
