@@ -19,8 +19,13 @@ const helmet = require('helmet');
 const userRoutes = require('./routes/users');
 const plantRoutes = require('./routes/plants');
 const updateRoutes = require('./routes/updates');
+const MongoStore = require('connect-mongo');
+const dbUrl = 'mongodb://localhost:27017/plantlib';
+// const dbUrl = process.env.DB_URL;
 
-mongoose.connect('mongodb://localhost:27017/plantlib');
+
+
+mongoose.connect(dbUrl);
 
 const db = mongoose.connection;
 db.on('error', console.error.bind(console, 'connection error:'));
@@ -41,9 +46,18 @@ app.use(express.urlencoded({extended: true}));
 app.use(methodOverride('_method'));
 app.use(express.static(path.join(__dirname, 'public')));
 app.use(mongoSanitize());
-app.use(helmet({contentSecurityPolicy: false}));
+app.use(helmet({ contentSecurityPolicy: false }));
+
+const store = MongoStore.create({
+    mongoUrl: dbUrl,
+    touchAfter: 24 * 60 * 60,
+    crypto: {
+        secret: 'secret!'
+    }
+});
 
 const sessionConfig = {
+    store,
     name: 'sesh',
     secret: 'secret!',
     resave: false,
