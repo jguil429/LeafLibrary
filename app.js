@@ -72,14 +72,14 @@ app.use((req, res, next) => {
     next();
 });
 
+app.locals.currentYear = new Date().getFullYear();
 
 app.use('/', userRoutes);
 app.use('/plants', plantRoutes);
 app.use('/plants/:id/updates', updateRoutes);
 
 app.get('/', (req, res) => {
-    const currentYear = new Date().getFullYear();
-    res.render('home', { currentYear });
+    res.render('home');
 });
 
 app.use((err, req, res, next) => {

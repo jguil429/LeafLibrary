@@ -10,9 +10,8 @@ const {setDefaultISOStringFields} = require("../utils/dateHelper");
 module.exports.library = async(req, res) => {
     const plants = await Plant.find().populate('images');
     const placeholder = await Image.findOne({filename: 'LeafLibrary_placeholder'})
-    const currentYear = new Date().getFullYear();
 
-    res.render('plants/library', {plants, placeholder, currentYear});
+    res.render('plants/library', {plants, placeholder});
 };
 
 module.exports.myPlants = async(req, res) => {
