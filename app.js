@@ -107,9 +107,11 @@ app.all('*', (req, res, next) => {
     next(new ExpressError('Page Not Found', 404))
 });
 
+const port = process.env.PORT || 3030;
+
 //for Jordan's local
-app.listen(3030, () => {
-    console.log('Port 3030')
+app.listen(port, () => {
+    console.log(`Port ${port}`)
 });
 
 //for Jennie's local
