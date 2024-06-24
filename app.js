@@ -13,6 +13,8 @@ const methodOverride = require('method-override');
 const passport = require('passport');
 const LocalStrategy = require('passport-local');
 const User = require('./models/user');
+const mongoSanitize = require('express-mongo-sanitize');
+const helmet = require('helmet');
 
 const userRoutes = require('./routes/users');
 const plantRoutes = require('./routes/plants');
@@ -38,13 +40,17 @@ app.set('views', path.join(__dirname, 'views'));
 app.use(express.urlencoded({extended: true}));
 app.use(methodOverride('_method'));
 app.use(express.static(path.join(__dirname, 'public')));
+app.use(mongoSanitize());
+app.use(helmet({contentSecurityPolicy: false}));
 
 const sessionConfig = {
+    name: 'sesh',
     secret: 'secret!',
     resave: false,
     saveUninitialized: true, 
     cookie: {
         httpOnly: true,
+        // secure: true,
         expires: Date.now() + 1000 * 60 * 60 * 24 * 7, 
         maxAge: 1000 * 60 * 60 * 24 * 7,
     }

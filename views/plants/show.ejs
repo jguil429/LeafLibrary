@@ -8,7 +8,7 @@
                 <div class="carousel-inner rounded-top">
                     <% plant.images.forEach((img, i) => { %>
                         <div class="carousel-item <%= i === 0 ? 'active' : '' %>">
-                        <img src="<%=img.library_card%>" class="d-block w-100 h-100 image-thumbnail" alt="">
+                        <img crossorigin="anonymous" src="<%=img.library_card%>" class="d-block w-100 h-100 image-thumbnail" alt="">
                         </div>
                     <% }) %>
                 </div>
@@ -55,8 +55,8 @@
             <div class="card mb-3">
                 <div class="card-body">
                     <h5 class="text-center card-title">Update Plant Care</h5>
-                    <form action="/plants/<%= plant._id %>/updates" method="POST" class="mb-3 validated-form" novalidate>
-                         <div class="d-flex align-items-center">
+                    <form action="/plants/<%= plant._id %>/updates" method="POST" class="mb-2 validated-form" novalidate>
+                         <div class="d-flex align-items-center" style="height: 60px">
                             <h6 class="card-subtitle me-2">Plant Health:</h6>
                             <fieldset class="starability-heart mt-4">
                                 <input type="radio" id="no-rate" class="input-no-rate" name="update[health]" value="1" checked aria-label="No rating." />
