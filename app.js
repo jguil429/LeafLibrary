@@ -20,8 +20,7 @@ const userRoutes = require('./routes/users');
 const plantRoutes = require('./routes/plants');
 const updateRoutes = require('./routes/updates');
 const MongoStore = require('connect-mongo');
-const dbUrl = 'mongodb://localhost:27017/plantlib';
-// const dbUrl = process.env.DB_URL;
+const dbUrl = 'mongodb://localhost:27017/plantlib' || process.env.DB_URL;
 
 
 
@@ -48,18 +47,20 @@ app.use(express.static(path.join(__dirname, 'public')));
 app.use(mongoSanitize());
 app.use(helmet({ contentSecurityPolicy: false }));
 
+const secret = process.env.SECRET || 'secret!'
+
 const store = MongoStore.create({
     mongoUrl: dbUrl,
     touchAfter: 24 * 60 * 60,
     crypto: {
-        secret: 'secret!'
+        secret
     }
 });
 
 const sessionConfig = {
     store,
     name: 'sesh',
-    secret: 'secret!',
+    secret,
     resave: false,
     saveUninitialized: true, 
     cookie: {
