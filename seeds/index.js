@@ -1,17 +1,105 @@
+// const mongoose = require('mongoose');
+// const {genus, species} = require('./seedhelpers');
+// const Plant = require('../models/plant');
+// const User = require('../models/user');
+// const Image = require('../models/image');
+// const { DateTime } = require("luxon");
+//
+// mongoose.connect('mongodb://localhost:27017/plantlib');
+//
+// const db = mongoose.connection;
+// db.on('error', console.error.bind(console, 'connection error:'));
+// db.once('open', () => {
+//     console.log("Connected")
+// });
+//
+// const sample = array => array[Math.floor(Math.random() * array.length)];
+//
+// const seedImages = [
+//     "https://res.cloudinary.com/dpblveo9k/image/upload/v1712788124/LeafLibrary/btakq1nacknwalruc8qx.jpg",
+//     "https://res.cloudinary.com/dpblveo9k/image/upload/v1712788124/LeafLibrary/efuwplf5f9gphcl0guao.jpg",
+//     "https://res.cloudinary.com/dpblveo9k/image/upload/v1712583766/LeafLibrary/dvukzxwzqd7f8cm1u2yn.jpg",
+//     "https://res.cloudinary.com/dpblveo9k/image/upload/v1712582502/LeafLibrary/tztbyiusbhfljtkv8fxd.jpg",
+//     "https://res.cloudinary.com/dpblveo9k/image/upload/v1712245923/LeafLibrary/wdgg5oe7bvo7yzqfabs7.jpg"
+// ]
+//
+// const placeholderImageUrl = 'https://res.cloudinary.com/dpblveo9k/image/upload/v1713400105/0_wfzkvq.jpg';
+//
+// const seedDB = async() => {
+//     await Plant.deleteMany({});
+//     await User.deleteMany({});
+//     await Image.deleteMany({});
+//
+//     // create User "test" attached as author to the 5 seeded plants
+//     const testUser = new User({
+//         username: 'testUser',
+//         email: 'test@gmail.com',
+//     });
+//     await testUser.setPassword('test@123');
+//     await testUser.save();
+//
+//     // create User "jupe" for testing plant additions
+//     const jupeUser = new User({
+//         username: 'jupe',
+//         email: 'jupe@gmeow.com',
+//     });
+//     await jupeUser.setPassword('jupe@123');
+//     await jupeUser.save();
+//
+//     //create Image instance for empty pot placeholder
+//     const image = new Image({
+//         url: placeholderImageUrl,
+//         filename: `LeafLibrary_placeholder`,
+//     });
+//     await image.save();
+//
+//     // loop through 5 seed instances
+//     for (let i = 0; i < 5; i++) {
+//         //create 5 Image instances to associate with Plant instances
+//         const image = new Image({
+//             url: seedImages[i],
+//             filename: `LeafLibrary_${i}`,
+//         });
+//         await image.save();
+//
+//         //create 5 Plant instances
+//         const p = new Plant({
+//             author: testUser,
+//             scientific_name: `${sample(genus)} ${sample(species)}`,
+//             common_name: 'plant',
+//             duration: 'perennial',
+//             date_planted: new Date(DateTime.now()),
+//             images: [image._id],
+//         })
+//         await p.save();
+//     }
+// }
+//
+// seedDB().then(() => {
+//     mongoose.connection.close();
+// });
+
 const mongoose = require('mongoose');
-const {genus, species} = require('./seedhelpers');
+const { genus, species } = require('./seedhelpers');
 const Plant = require('../models/plant');
 const User = require('../models/user');
 const Image = require('../models/image');
 const { DateTime } = require("luxon");
 
-mongoose.connect('mongodb://localhost:27017/plantlib');
+const mongoURI = process.env.MONGO_URI || 'mongodb://localhost:27017/plantlib';
 
-const db = mongoose.connection;
-db.on('error', console.error.bind(console, 'connection error:'));
-db.once('open', () => {
-    console.log("Connected")
-});
+async function connectDB() {
+    try {
+        await mongoose.connect(mongoURI, {
+            useNewUrlParser: true,
+            useUnifiedTopology: true,
+        });
+        console.log("Connected to MongoDB");
+    } catch (error) {
+        console.error("Error connecting to MongoDB:", error);
+        process.exit(1);
+    }
+}
 
 const sample = array => array[Math.floor(Math.random() * array.length)];
 
@@ -21,60 +109,71 @@ const seedImages = [
     "https://res.cloudinary.com/dpblveo9k/image/upload/v1712583766/LeafLibrary/dvukzxwzqd7f8cm1u2yn.jpg",
     "https://res.cloudinary.com/dpblveo9k/image/upload/v1712582502/LeafLibrary/tztbyiusbhfljtkv8fxd.jpg",
     "https://res.cloudinary.com/dpblveo9k/image/upload/v1712245923/LeafLibrary/wdgg5oe7bvo7yzqfabs7.jpg"
-]
+];
 
 const placeholderImageUrl = 'https://res.cloudinary.com/dpblveo9k/image/upload/v1713400105/0_wfzkvq.jpg';
 
-const seedDB = async() => {
-    await Plant.deleteMany({});
-    await User.deleteMany({});
-    await Image.deleteMany({});
+async function seedDB() {
+    try {
+        await Plant.deleteMany({});
+        await User.deleteMany({});
+        await Image.deleteMany({});
 
-    // create User "test" attached as author to the 5 seeded plants
-    const testUser = new User({
-        username: 'testUser',
-        email: 'test@gmail.com',
-    });
-    await testUser.setPassword('test@123');
-    await testUser.save();
-
-    // create User "jupe" for testing plant additions
-    const jupeUser = new User({
-        username: 'jupe',
-        email: 'jupe@gmeow.com',
-    });
-    await jupeUser.setPassword('jupe@123');
-    await jupeUser.save();
-
-    //create Image instance for empty pot placeholder
-    const image = new Image({
-        url: placeholderImageUrl,
-        filename: `LeafLibrary_placeholder`,
-    });
-    await image.save();
-
-    // loop through 5 seed instances
-    for (let i = 0; i < 5; i++) {
-        //create 5 Image instances to associate with Plant instances
-        const image = new Image({
-            url: seedImages[i],
-            filename: `LeafLibrary_${i}`,
+        // create User "test" attached as author to the 5 seeded plants
+        const testUser = new User({
+            username: 'testUser',
+            email: 'test@gmail.com',
         });
-        await image.save();
+        await testUser.setPassword('test@123');
+        await testUser.save();
 
-        //create 5 Plant instances
-        const p = new Plant({
-            author: testUser,
-            scientific_name: `${sample(genus)} ${sample(species)}`,
-            common_name: 'plant',
-            duration: 'perennial',
-            date_planted: new Date(DateTime.now()),
-            images: [image._id],
-        })
-        await p.save();
+        // create User "jupe" for testing plant additions
+        const jupeUser = new User({
+            username: 'jupe',
+            email: 'jupe@gmeow.com',
+        });
+        await jupeUser.setPassword('jupe@123');
+        await jupeUser.save();
+
+        // create Image instance for empty pot placeholder
+        const placeholderImage = new Image({
+            url: placeholderImageUrl,
+            filename: `LeafLibrary_placeholder`,
+        });
+        await placeholderImage.save();
+
+        // loop through 5 seed instances
+        for (let i = 0; i < 5; i++) {
+            // create 5 Image instances to associate with Plant instances
+            const image = new Image({
+                url: seedImages[i],
+                filename: `LeafLibrary_${i}`,
+            });
+            await image.save();
+
+            // create 5 Plant instances
+            const plant = new Plant({
+                author: testUser._id,
+                scientific_name: `${sample(genus)} ${sample(species)}`,
+                common_name: 'plant',
+                duration: 'perennial',
+                date_planted: new Date(DateTime.now()),
+                images: [image._id],
+            });
+            await plant.save();
+        }
+
+        console.log("Database seeded successfully");
+    } catch (error) {
+        console.error("Error seeding database:", error);
+    } finally {
+        mongoose.connection.close();
     }
 }
 
-seedDB().then(() => {
-    mongoose.connection.close();
-});
+async function main() {
+    await connectDB();
+    await seedDB();
+}
+
+main();
