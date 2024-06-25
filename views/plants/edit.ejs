@@ -17,20 +17,21 @@
                     </div>
                     <div class="mb-3">
                         <label class="form-label" for="duration">Select Plant Type</label>
-                        <div class="form-floating">
+                        <div>
                             <select class="form-select" name="plant[duration]" id="duration" aria-label="plant type select" required>
-                                <option selected value="Perennial">Perennial</option>
-                                <option value="Annual">Annual</option>
-                                <option value="Herb">Herb</option>
-                                <option value="Succulent">Succulent</option>
-                                <option value="Shrub">Shrub</option>
-                                <option value="Tree">Tree</option>
-                                <option value="Groundcover">Groundcover</option>
-                                <option value="Vine">Vine</option>
-                                <option value="Bulb">Bulb</option>
-                                <option value="Fern">Fern</option>
+                                <option value="Perennial" <%= plant.duration === 'Perennial' ? 'selected' : '' %>>Perennial</option>
+                                <option value="Annual" <%= plant.duration === 'Annual' ? 'selected' : '' %>>Annual</option>
+                                <option value="Herb" <%= plant.duration === 'Herb' ? 'selected' : '' %>>Herb</option>
+                                <option value="Succulent" <%= plant.duration === 'Succulent' ? 'selected' : '' %>>Succulent</option>
+                                <option value="Shrub" <%= plant.duration === 'Shrub' ? 'selected' : '' %>>Shrub</option>
+                                <option value="Tree" <%= plant.duration === 'Tree' ? 'selected' : '' %>>Tree</option>
+                                <option value="Groundcover" <%= plant.duration === 'Groundcover' ? 'selected' : '' %>>Groundcover</option>
+                                <option value="Vine" <%= plant.duration === 'Vine' ? 'selected' : '' %>>Vine</option>
+                                <option value="Bulb" <%= plant.duration === 'Bulb' ? 'selected' : '' %>>Bulb</option>
+                                <option value="Fern" <%= plant.duration === 'Fern' ? 'selected' : '' %>>Fern</option>
                             </select>
                         </div>
+
                     </div>
                     <div class="mb-3">
                         <label class="form-label" for="date">Date Planted</label>
