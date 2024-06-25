@@ -16,8 +16,21 @@
                         <input class="form-control" type="text" id="scientific" name="plant[scientific_name]" value="<%= plant.scientific_name %>" required>
                     </div>
                     <div class="mb-3">
-                        <label class="form-label" for="duration">Plant Type</label>
-                        <input class="form-control" type="text" id="duration" name="plant[duration]" value="<%= plant.duration %>" required>
+                        <label class="form-label" for="duration">Select Plant Type</label>
+                        <div class="form-floating">
+                            <select class="form-select" name="plant[duration]" id="duration" aria-label="plant type select" required>
+                                <option selected value="Perennial">Perennial</option>
+                                <option value="Annual">Annual</option>
+                                <option value="Herb">Herb</option>
+                                <option value="Succulent">Succulent</option>
+                                <option value="Shrub">Shrub</option>
+                                <option value="Tree">Tree</option>
+                                <option value="Groundcover">Groundcover</option>
+                                <option value="Vine">Vine</option>
+                                <option value="Bulb">Bulb</option>
+                                <option value="Fern">Fern</option>
+                            </select>
+                        </div>
                     </div>
                     <div class="mb-3">
                         <label class="form-label" for="date">Date Planted</label>
